@@ -1,0 +1,58 @@
+namespace Zapper_UserSettings
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            string path = "output.txt";
+            string settings = "00000000";
+
+            var isEnabled = HasFeatureEnabled(settings);
+
+            var text = GetText(UserProfile.BiometricsEnabled, isEnabled);
+
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                writer.WriteLine(text);
+            }
+        }
+
+        static bool HasFeatureEnabled(string settings)
+        {
+            if (settings == "00000000")
+            {
+                return false;
+            }
+            else if (settings == "00000010")
+            {
+                return true;
+            }
+            else if (settings == "11111111")
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        static string GetText(UserProfile profile, bool isEnabled)
+        {
+             return profile.ToString() + " is " + isEnabled.ToString();            
+        }
+    }
+}
+
+
+enum UserProfile
+{
+    SMSNotificationsEnabled = 1,
+    PushNotificationsEnabled = 2,
+    BiometricsEnabled = 3,
+    CameraEnabled = 4,
+    LocationEnabled = 5,
+    NFCEnabled = 6,
+    VouchersEnabled = 7,
+    LoyaltyEnabled = 8
+}
