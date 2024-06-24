@@ -1,0 +1,20 @@
+CREATE TABLE Customers (
+    CustomerID int,
+    LastName varchar(255),
+    FirstName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+
+CREATE TABLE Merchants (
+    MerchantID int,
+    MerchantName varchar(255),
+    Address varchar(255),
+    City varchar(255)
+);
+
+CREATE TABLE Transacations (
+    TransactionID int,
+    CustomerID int,
+    MerchantID int,
+);
